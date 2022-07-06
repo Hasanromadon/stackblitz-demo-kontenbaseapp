@@ -44,7 +44,7 @@ const Register = ({ setSwitchAuthForm }) => {
           />
         </div>
         <div className="form-group">
-          <label>First Last</label>
+          <label>Last Name</label>
           <input
             type="text"
             value={lastName}
