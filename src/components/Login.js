@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { kontenbase } from '../lib/kontenbase';
 const Login = ({ setUser }) => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ const Login = ({ setUser }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     const response = await kontenbase.auth.login({
-      email,
+      username,
       password,
     });
 
@@ -27,17 +27,17 @@ const Login = ({ setUser }) => {
       <form onSubmit={handleLogin}>
         <h2>Login</h2>
         <div className="form-group">
-          <label>Email</label>
+          <label>Username</label>
           <input
             type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
         </div>
         <div className="form-group">
           <label>Password</label>
           <input
-            type="text"
+            type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />

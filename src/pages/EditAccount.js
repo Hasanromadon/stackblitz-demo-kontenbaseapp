@@ -11,6 +11,7 @@ const EditAccount = () => {
   const [location, setLocation] = useState('');
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState('');
+  const [website, setWebsite] = useState('');
 
   const navigate = useNavigate();
 
@@ -31,6 +32,7 @@ const EditAccount = () => {
     setCompany(profile?.company);
     setLocation(profile?.location);
     setPosition(profile?.position);
+    setWebsite(profile?.website);
   };
 
   const handleLogout = async () => {
@@ -70,6 +72,7 @@ const EditAccount = () => {
       company,
       location,
       position,
+      website,
     });
 
     if (status === 200) {
@@ -111,7 +114,7 @@ const EditAccount = () => {
         <div className="card">
           <form onSubmit={handleUpdate}>
             <div className="card-field">
-              <label>Name</label>
+              <label>First Name</label>
               <input
                 value={firstName || ''}
                 onChange={(e) => setFirstName(e.target.value)}
@@ -150,6 +153,15 @@ const EditAccount = () => {
               <input
                 value={location || ''}
                 onChange={(e) => setLocation(e.target.value)}
+              />
+            </div>
+
+            <div className="card-field">
+              <label>Website</label>
+              <input
+                type="url"
+                value={website || ''}
+                onChange={(e) => setWebsite(e.target.value)}
               />
             </div>
 

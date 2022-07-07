@@ -13,7 +13,10 @@ const Profile = () => {
   const getUser = async () => {
     const id = params.id;
 
-    const { data } = await kontenbase.service('profile').getById(id, {
+    const { data } = await kontenbase.service('profile').find({
+      where: {
+        'Users[0]': i,
+      },
       lookup: '*',
     });
     setProfile(data);
@@ -69,7 +72,7 @@ const Profile = () => {
           <p>{profile?.location}</p>
         </div>
         <div className="card">
-          <h3>Web Links</h3>
+          <h3>Web Link</h3>
           <a
             className="website-link"
             href={profile?.website ? profile.website : 'null'}
@@ -79,7 +82,6 @@ const Profile = () => {
         </div>
       </div>
     </div>
-    // <div>tes</div>
   );
 };
 
