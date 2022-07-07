@@ -1,31 +1,32 @@
 import React, { useState } from 'react';
 import { kontenbase } from '../lib/kontenbase';
-
+import { useNavigate } from 'react-router-dom';
 const Register = ({ setSwitchAuthForm }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const navigate = useNavigate();
   const handleRegister = async (e) => {
     e.preventDefault();
 
     const response = await kontenbase.auth.register({
       firstName,
       lastName,
+      username,
       email,
       password,
     });
 
-    const { status: profileStatus } = await kontenbase
-      .service('profile')
-      .create({
-        Users: [response.user?._id],
-      });
-
+    await kontenbase.service('profile').create({
+      Users: [response.user?._id],
+    });
+    console.log(response.user);
     if (response.status === 200) {
       alert('register success');
-      setSwitchAuthForm('login');
+      // setSwitchAuthForm('login');
+      navigate('/myaccount');
     } else {
       alert(response.error.message);
     }
@@ -52,6 +53,14 @@ const Register = ({ setSwitchAuthForm }) => {
           />
         </div>
         <div className="form-group">
+          <label>Username</label>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
           <label>Email</label>
           <input
             type="text"
@@ -62,7 +71,7 @@ const Register = ({ setSwitchAuthForm }) => {
         <div className="form-group">
           <label>Password</label>
           <input
-            type="text"
+            type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />

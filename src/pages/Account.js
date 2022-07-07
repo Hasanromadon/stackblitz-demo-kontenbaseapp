@@ -15,7 +15,8 @@ const Account = () => {
     });
     setUser(response?.user);
     setShareProfile(
-      'http://localhost:3000/profile/' + response.user?.profile[0]._id
+      'https://github-jcdvaq-ukv45g.stackblitz.io/profile/' +
+        response.user?.username
     );
   };
 
