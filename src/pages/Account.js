@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { kontenbase } from '../lib/kontenbase';
 import { useNavigate } from 'react-router-dom';
+
 const Account = () => {
   const [user, setUser] = useState();
   const [shareProfile, setShareProfile] = useState('');
@@ -11,7 +12,7 @@ const Account = () => {
 
   const getUser = async () => {
     const response = await kontenbase.auth.user({
-      lookup: '*',
+      lookup: '*', //this will show all linked data with user
     });
     setUser(response?.user);
     setShareProfile('http://localhost:3000/profile/' + response.user?.username);
@@ -106,9 +107,6 @@ const Account = () => {
         <div className="card">
           <h3>Location</h3>
           <p>{user?.profile[0]?.location}</p>
-          {/* <button className="button button-ouline button-map">
-            Show on Map
-          </button> */}
         </div>
         <div className="card">
           <h3>Web Links</h3>

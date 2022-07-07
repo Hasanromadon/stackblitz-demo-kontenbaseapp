@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { kontenbase } from '../lib/kontenbase';
 import { useNavigate } from 'react-router-dom';
+
 const EditAccount = () => {
   const [profileId, setProfileId] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -68,14 +69,16 @@ const EditAccount = () => {
       phoneNumber,
     });
 
-    const response = await kontenbase.service('profile').updateById(profileId, {
-      company,
-      location,
-      position,
-      website,
-    });
+    const { status: profileStatus } = await kontenbase
+      .service('profile')
+      .updateById(profileId, {
+        company,
+        location,
+        position,
+        website,
+      });
 
-    if (status === 200) {
+    if (status === 200 || profileStatus === 200) {
       alert('Update success');
       navigate('/myaccount');
     } else {

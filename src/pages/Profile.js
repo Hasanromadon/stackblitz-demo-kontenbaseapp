@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { kontenbase } from '../lib/kontenbase';
 import { useParams } from 'react-router-dom';
+
 const Profile = () => {
   const [user, setUser] = useState();
   const [profile, setProfile] = useState();
@@ -71,9 +72,13 @@ const Profile = () => {
         </div>
         <div className="card">
           <h3>Web Link</h3>
-          {profile?.website
-            ? `<a className="website-link" href={profile?.website}/>${profile?.website}</a>`
-            : 'null'}
+          {profile?.website ? (
+            <a className="website-link" href={profile?.website}>
+              {profile?.website}
+            </a>
+          ) : (
+            'null'
+          )}
         </div>
       </div>
     </div>

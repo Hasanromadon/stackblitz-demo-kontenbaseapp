@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { kontenbase } from '../lib/kontenbase';
 import { useNavigate } from 'react-router-dom';
-const Register = ({ setSwitchAuthForm }) => {
+const Register = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
@@ -24,7 +24,6 @@ const Register = ({ setSwitchAuthForm }) => {
     });
     if (response.status === 200) {
       alert('register success');
-      // setSwitchAuthForm('login');
       navigate('/myaccount');
     } else {
       alert(response.error.message);

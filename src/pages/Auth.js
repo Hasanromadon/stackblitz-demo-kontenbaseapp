@@ -3,6 +3,7 @@ import Login from '../components/Login';
 import Register from '../components/Register';
 import { kontenbase } from '../lib/kontenbase';
 import { useNavigate } from 'react-router-dom';
+
 const Auth = () => {
   const [switchAuthForm, setSwitchAuthForm] = useState('register');
   const [user, setUser] = useState();
@@ -27,7 +28,7 @@ const Auth = () => {
       </div>
 
       {switchAuthForm === 'register' ? (
-        <Register setSwitchAuthForm={setSwitchAuthForm} />
+        <Register />
       ) : (
         <Login setUser={setUser} />
       )}
