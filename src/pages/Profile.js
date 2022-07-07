@@ -67,9 +67,6 @@ const Profile = () => {
         <div className="card">
           <h3>Location</h3>
           <p>{profile?.location}</p>
-          {/* <button className="button button-ouline button-map">
-            Show on Map
-          </button> */}
         </div>
         <div className="card">
           <h3>Web Links</h3>

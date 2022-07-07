@@ -17,11 +17,9 @@ const Register = ({ setSwitchAuthForm }) => {
       password,
     });
 
-    const { status: profileStatus } = await kontenbase
-      .service('profile')
-      .create({
-        Users: [response.user?._id],
-      });
+    await kontenbase.service('profile').create({
+      Users: [response.user?._id],
+    });
 
     if (response.status === 200) {
       alert('register success');
