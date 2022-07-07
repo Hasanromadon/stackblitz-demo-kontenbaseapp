@@ -14,10 +14,7 @@ const Account = () => {
       lookup: '*',
     });
     setUser(response?.user);
-    setShareProfile(
-      'https://github-jcdvaq-ukv45g.stackblitz.io/profile/' +
-        response.user?.username
-    );
+    setShareProfile('http://localhost:3000/profile/' + response.user?.username);
   };
 
   const handleLogout = async () => {

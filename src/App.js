@@ -12,7 +12,7 @@ function App() {
         <Route path="/" element={<Auth />} />
         <Route path="/myaccount" element={<Account />} />
         <Route path="/edit-account" element={<EditAccount />} />
-        <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/profile/:username" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { kontenbase } from '../lib/kontenbase';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 const Profile = () => {
-  const [profile, setProfile] = useState();
   const [user, setUser] = useState();
+  const [profile, setProfile] = useState();
   const params = useParams();
 
   useEffect(() => {
@@ -11,16 +11,15 @@ const Profile = () => {
   }, []);
 
   const getUser = async () => {
-    const id = params.id;
-
-    const { data } = await kontenbase.service('profile').find({
+    const { username } = params;
+    const { data: user } = await kontenbase.service('Users').find({
       where: {
-        'Users[0]': i,
+        username,
       },
       lookup: '*',
     });
-    setProfile(data);
-    setUser(data.Users[0]);
+    setUser(user[0]);
+    setProfile(user[0].profile[0]);
   };
 
   return (
@@ -58,7 +57,6 @@ const Profile = () => {
           <div className="card-field">
             <span>Email</span>
             <a className="link-email" href="mailto:name@email.com">
-              {' '}
               {user?.email}
             </a>
           </div>
@@ -73,12 +71,9 @@ const Profile = () => {
         </div>
         <div className="card">
           <h3>Web Link</h3>
-          <a
-            className="website-link"
-            href={profile?.website ? profile.website : 'null'}
-          >
-            Website
-          </a>
+          {profile?.website
+            ? `<a className="website-link" href={profile?.website}/>${profile?.website}</a>`
+            : 'null'}
         </div>
       </div>
     </div>
